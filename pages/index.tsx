@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import LoginLogo from '../components/LoginLogo';
-import VetfluxForm from '../components/vetfluxForm';
+import VetfluxSurveyForm from '../components/VetfluxSurveyForm';
 
 const Home = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -15,7 +15,7 @@ const Home = () => {
           OPEN
         </button>
       </div>
-      {openForm && <VetfluxForm />}
+      <div className='h-full'>{openForm && <VetfluxSurveyForm />}</div>
     </div>
   );
 };
