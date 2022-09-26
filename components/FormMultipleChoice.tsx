@@ -1,6 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-const FormMultipleChoice = () => {
+interface FormMultipleChoicePropType {
+  type: string;
+  saveSurveyList: any;
+}
+
+const FormMultipleChoice = ({
+  type,
+  saveSurveyList,
+}: FormMultipleChoicePropType) => {
   const [options, setOptions] = useState(['옵션 1']);
 
   const addOption = () => {
@@ -9,7 +17,6 @@ const FormMultipleChoice = () => {
       let idx = newArr.indexOf('기타....');
       newArr.splice(idx, 0, `옵션 ${options.length + 1}`);
       setOptions([...newArr]);
-      console.log(options);
     } else setOptions((option) => [...option, `옵션 ${options.length + 1}`]);
   };
   const addEtc = () => {
@@ -21,6 +28,14 @@ const FormMultipleChoice = () => {
     setOptions([...newArr]);
   };
 
+  const handleOptions = (event: any, index: number) => {
+    setOptions(
+      options.map((val, idx) => (idx === index ? event.target.value : val)),
+    );
+  };
+  const onNextClick = (saveSurveyList: any) => {
+    saveSurveyList(options, type);
+  };
   return (
     <div className='w-full'>
       {options.map((option, index) => (
@@ -29,6 +44,8 @@ const FormMultipleChoice = () => {
             type='text'
             className='flex-1 border border-t-0 border-l-0 border-r-0 border-b-purple-400 p-2 outline-none'
             placeholder={`${option}`}
+            value={option}
+            onChange={(event) => handleOptions(event, index)}
             disabled={option === '기타....' ? true : false}
           />
           {options.length > 1 && (

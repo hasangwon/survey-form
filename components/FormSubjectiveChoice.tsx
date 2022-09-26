@@ -1,6 +1,14 @@
 import React from 'react';
 
-const FormSubjectiveChoice = () => {
+interface FormSubjectiveChoicePropType {
+  type: string;
+  saveSurveyList: any;
+}
+
+const FormSubjectiveChoice = ({
+  type,
+  saveSurveyList,
+}: FormSubjectiveChoicePropType) => {
   return (
     <div className='w-full'>
       <div className='flex w-full my-2'>

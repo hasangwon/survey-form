@@ -5,9 +5,11 @@ import FormSubjectiveChoice from './FormSubjectiveChoice';
 const Survey = ({
   index,
   deleteSurvey,
+  saveSurveyList,
 }: {
   index: number;
   deleteSurvey: (index: number) => void;
+  saveSurveyList: any;
 }) => {
   const [value, setValue] = useState('');
   const [dropQuestionsType, setDropQuestionsType] = useState(false);
@@ -68,11 +70,36 @@ const Survey = ({
         </div>
       </div>
       <div className='mt-4'>
-        {selectedQuestionsType === '객관식 질문' && <FormMultipleChoice />}
-        {selectedQuestionsType === '체크박스' && <FormMultipleChoice />}
-        {selectedQuestionsType === '드롭다운' && <FormMultipleChoice />}
-        {selectedQuestionsType === '단답형' && <FormSubjectiveChoice />}
-        {selectedQuestionsType === '장문형' && <FormSubjectiveChoice />}
+        {selectedQuestionsType === '객관식 질문' && (
+          <FormMultipleChoice
+            type={'객관식 질문'}
+            saveSurveyList={saveSurveyList}
+          />
+        )}
+        {selectedQuestionsType === '체크박스' && (
+          <FormMultipleChoice
+            type={'체크박스'}
+            saveSurveyList={saveSurveyList}
+          />
+        )}
+        {selectedQuestionsType === '드롭다운' && (
+          <FormMultipleChoice
+            type={'드롭다운'}
+            saveSurveyList={saveSurveyList}
+          />
+        )}
+        {selectedQuestionsType === '단답형' && (
+          <FormSubjectiveChoice
+            type={'단답형'}
+            saveSurveyList={saveSurveyList}
+          />
+        )}
+        {selectedQuestionsType === '장문형' && (
+          <FormSubjectiveChoice
+            type={'장문형'}
+            saveSurveyList={saveSurveyList}
+          />
+        )}
         {/* {selectedQuestionsType === '파일업로드' && <div>파일업로드</div>} */}
       </div>
       <div className='flex justify-end'>
