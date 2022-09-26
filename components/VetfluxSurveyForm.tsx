@@ -3,7 +3,6 @@ import Survey from './Survey';
 
 const VetfluxSurveyForm = () => {
   const [surveyList, setSurveyList] = useState([{ key: 0, option: null }]);
-  const [surveyCatch, setSurveyCatch] = useState(1);
 
   const addSurvey = () => {
     setSurveyList((survey: any) => [
@@ -14,8 +13,7 @@ const VetfluxSurveyForm = () => {
   const deleteSurvey = (index: number) => {
     let newArr = surveyList;
     newArr.splice(index, 1);
-    setSurveyList(newArr);
-    setSurveyCatch(surveyCatch + 1); // 지워야댐, 왜 surveylist가 바껴도 렌더링이 안되는지 모르겠음
+    setSurveyList([...newArr]);
   };
   return (
     <div className='flex flex-col justify-center h-full'>
